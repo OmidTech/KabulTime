@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "6759318bfe66c424a2b35648",
+    "name": "Transformer J",
+    "unit": "Pcs",
+    "currency": "USD",
+    "price": 900,
+    "quantity": 2,
+    "total": 1800,
+    "createdAt": "2024-12-11T06:30:35.995Z",
+    "__v": 0
+  },
+  {
+    "_id": "675931cdfe66c424a2b35654",
+    "name": "Transformer W",
+    "unit": "Pcs",
+    "currency": "USD",
+    "price": 1300,
+    "quantity": 2,
+    "total": 2600,
+    "createdAt": "2024-12-11T06:31:41.253Z",
+    "__v": 0
+  },
+  {
+    "_id": "675f1e3b508be1e13127645a",
+    "name": "Transformer W500",
+    "unit": "Pcs",
+    "currency": "AFN",
+    "price": 5000,
+    "quantity": 10,
+    "total": 50000,
+    "createdAt": "2024-12-15T18:21:47.251Z",
+    "__v": 0
+  }
+]

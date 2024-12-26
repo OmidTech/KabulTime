@@ -1,0 +1,191 @@
+<%-include('header')%>
+<div class="container-fluid">
+
+  <div class="row">
+      
+      <div class="col-lg-8 col-sm-12 d-flex align-items-stretch">
+        <div class="card w-100">
+          <div class="card-body p-4">
+            <h5 class="card-title fw-semibold mb-4">Customers</h5>
+
+            <div class="table-responsive">
+                
+              <input type="text" onkeyup="myFunction()" class="float-end"  name="search" id="search" placeholder="Search">
+
+              <table class="table text-nowrap col-sm-12 mb-0 align-middle" id="myTable">
+                <thead class="text-dark fs-4">
+                  <tr>
+                    
+                    <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">No</h6>
+                    </th>
+                    <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">Name</h6>
+                    </th>
+                    <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">Address</h6>
+                    </th>
+                    <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Pone Number</h6>
+                      </th>
+                    
+                    <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">Action</h6>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="dt">
+                  <% var b=0 %>
+                      <% bb.forEach(function(p){%>
+                  <tr>
+                    
+                    <td class="border-bottom-0">
+                      <p class="fw-semibold mb-0"><%= b+=1 %></p>
+                    </td>
+                    <td class="border-bottom-0">
+                      <p class="fw-semibold mb-0"><%=p.name %></p>
+                    </td>
+                    <td class="border-bottom-0">
+                      <p class="fw-semibold mb-0"><%=p.address %></p>
+                    </td>
+                    <td class="border-bottom-0">
+                        <p class="fw-semibold mb-0"><%=p.phone %></p>
+                      </td>
+                    
+                    <td class="border-bottom-0">
+                      <a onclick="show(event)" href="/cdeleted/<%= p._id%>%>" class="btn btn-sm"
+                        style="background-color: rgb(247, 17, 67); color: rgb(241, 241, 241);">
+                        <i class="bi bi-trash3 ict"></i></a>
+                    </td>
+                  </tr>
+                <% })%>
+                  
+                              
+                </tbody>
+                
+              </table>
+              
+            </div>
+            <div class="pagination" id="pagination-controls">
+              <button id="prev" onclick="changePage(-1)">Previous</button>
+              <!-- Page numbers will be generated here -->
+              <button id="next" onclick="changePage(1)">Next</button>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-12 col-sm-12">
+        <div class="card mb-3">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 text-primary">Customer Inf</h5>                
+
+            <small class="text-muted float-end"></small>
+          </div>
+          <form action="/savedcustomer" method="post">
+          <div class="card-body">
+               
+            <div class="mb-3 ">
+              <label class="form-label"  for="basic-default-fullname">Full Name</label>
+
+            <input type="text" tabindex="0" class="form-control"name="cn" id="cn" required placeholder="Full Name">
+          </div>
+                <div class="mb-3 ">
+                  <label class="form-label"  for="basic-default-fullname">Address</label>
+
+                <input type="text" tabindex="0" class="form-control"name="add" id="add" required placeholder="Address">
+              </div>
+              <div class="mb-3 ">
+                <label class="form-label"  for="basic-default-fullname">Phone Number</label>
+                <input type="text" tabindex="0" class="form-control" required name="pn" id="pn" placeholder="Phone Number">
+              </div>
+              
+              <button type="submit" class="btn btn-primary float-end col-lg-12">Save</button>
+             
+          </div>
+          </form>
+        </div>
+      </div>
+  </div>
+  
+  
+</div>
+<script>
+const rowsPerPage = 30; // Number of rows per page
+    let currentPage = 1;
+
+    function displayTable(page) {
+        const rows = document.querySelectorAll("#myTable tbody tr");
+        const totalRows = rows.length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        
+        // Calculate start and end indices for current page
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        // Hide all rows and only show the selected page's rows
+        rows.forEach((row, index) => {
+            row.style.display = (index >= start && index < end) ? '' : 'none';
+        });
+
+        // Update row count
+
+        // Enable/disable Previous and Next buttons
+        document.getElementById("prev").disabled = page === 1;
+        document.getElementById("next").disabled = page === totalPages;
+
+        // Generate page numbers
+        generatePaginationControls(totalPages, page);
+    }
+
+    function generatePaginationControls(totalPages, activePage) {
+        const paginationControls = document.getElementById("pagination-controls");
+
+        // Clear previous page numbers
+        const pageNumbers = paginationControls.querySelectorAll("span");
+        pageNumbers.forEach(span => span.remove());
+
+        // Determine the range of page numbers to display
+        const maxPageNumbers = 10; // Maximum number of page numbers to display
+        let startPage, endPage;
+
+        if (totalPages <= maxPageNumbers) {
+            // If total pages are less than or equal to max, show all
+            startPage = 1;
+            endPage = totalPages;
+        } else {
+            // Calculate start and end page numbers to show
+            startPage = Math.max(1, activePage - Math.floor(maxPageNumbers / 2));
+            endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
+
+            // Adjust startPage if endPage exceeds totalPages
+            if (endPage === totalPages) {
+                startPage = Math.max(1, totalPages - maxPageNumbers + 1);
+            }
+        }
+
+        // Generate page numbers
+        for (let i = startPage; i <= endPage; i++) {
+            const span = document.createElement("span");
+            span.textContent = i;
+            span.className = (i === activePage) ? 'active' : '';
+            span.onclick = () => displayTable(i);
+            paginationControls.insertBefore(span, document.getElementById("next"));
+        }
+    }
+
+    function changePage(direction) {
+        const totalRows = document.querySelectorAll("#myTable tbody tr").length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        currentPage += direction;
+
+        // Ensure currentPage stays within bounds
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        displayTable(currentPage);
+    }
+
+    // Initial display
+    displayTable(currentPage);
+  </script>
+<%-include('footer')%>

@@ -1,0 +1,217 @@
+<%-include('header')%>
+<div class="container-fluid">
+ 
+<div id="modalForm">
+  <form action="/userupd" method="post">
+    <div class="form-container">
+        <h2>Update Payment</h2>
+        
+        <input class="float-end" type="text" id="bil" name="bil" placeholder="" readonly required>
+        
+        
+        <label class="form-label" for="basic-default-urm">Select Role</label>
+        <select id="urm" name="urm" class="form-select" required>
+          <option value="" disabled selected>Select Role</option>
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+          
+        </select>      
+        <label class="form-label"  for="ur">Payment</label>
+        <input type="text" id="ur" name="ur" placeholder="Payment" required>
+        <button class="mb-1" type="submit" id="submitButton">Submit</button>
+        <button id="closeButton">Close</button>
+    </div>
+  </form>
+</div>
+<div class="col-lg-12 col-m-12 col-sm-12 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Total Stock</h5>
+                <input type="text" onkeyup="myFunction()" class="float-end"  name="search" id="search" placeholder="Search">
+                <div class="table-responsive">
+                  <table class="table text-nowrap mb-0 col-sm-12 align-middle" id="myTable">
+                    <thead class="text-dark fs-4">
+                      <tr>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">No</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Name</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Email</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Password</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Role</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Action</h6>
+                        </th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% var b=0 %>
+                      <% pro.forEach(function(p){%>
+                      <tr>
+                        
+                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%= b+=1 %></h6></td>
+                        <td class="border-bottom-0">
+                          <h6 class="fw-semibold mb-1"><%=p.name %></h6>
+                                                    
+                      </td>
+                        <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-1"><%=p.username %></h6>
+                                                      
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6 class="fw-semibold mb-1"><%=p.password %></h6>
+                                                    
+                      </td>
+                        
+                        <td class="border-bottom-0">
+                          <div class="d-flex align-items-center gap-2">
+                            <p class="mb-0 fw-normal"><%=p.role %></p>
+                          </div>
+                        </td>
+                        <td class="border-bottom-0">
+                          <a id="openFormButton" class="btn del btn-success btn-sm"
+                          >
+                          <i class="ti ti-edit ict"></i></a>
+                          <a onclick="show(event)" href="/userdelete/<%= p._id%>%>"
+                            class="btn btn-danger btn-md" style="background-color: rgb(247, 17, 67); color: rgb(241, 241, 241);">
+                            <i class="bi bi-trash3 ict"></i></a>
+                        </td>
+                        
+                      </tr> <% })%>
+                                          
+                    </tbody>
+                  </table>
+                </div>
+                <div class="pagination" id="pagination-controls">
+                  <button id="prev" onclick="changePage(-1)">Previous</button>
+                  <!-- Page numbers will be generated here -->
+                  <button id="next" onclick="changePage(1)">Next</button>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          const rowsPerPage = 30; // Number of rows per page
+    let currentPage = 1;
+
+    function displayTable(page) {
+        const rows = document.querySelectorAll("#myTable tbody tr");
+        const totalRows = rows.length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        
+        // Calculate start and end indices for current page
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        // Hide all rows and only show the selected page's rows
+        rows.forEach((row, index) => {
+            row.style.display = (index >= start && index < end) ? '' : 'none';
+        });
+
+        // Update row count
+
+        // Enable/disable Previous and Next buttons
+        document.getElementById("prev").disabled = page === 1;
+        document.getElementById("next").disabled = page === totalPages;
+
+        // Generate page numbers
+        generatePaginationControls(totalPages, page);
+    }
+
+    function generatePaginationControls(totalPages, activePage) {
+        const paginationControls = document.getElementById("pagination-controls");
+
+        // Clear previous page numbers
+        const pageNumbers = paginationControls.querySelectorAll("span");
+        pageNumbers.forEach(span => span.remove());
+
+        // Determine the range of page numbers to display
+        const maxPageNumbers = 10; // Maximum number of page numbers to display
+        let startPage, endPage;
+
+        if (totalPages <= maxPageNumbers) {
+            // If total pages are less than or equal to max, show all
+            startPage = 1;
+            endPage = totalPages;
+        } else {
+            // Calculate start and end page numbers to show
+            startPage = Math.max(1, activePage - Math.floor(maxPageNumbers / 2));
+            endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
+
+            // Adjust startPage if endPage exceeds totalPages
+            if (endPage === totalPages) {
+                startPage = Math.max(1, totalPages - maxPageNumbers + 1);
+            }
+        }
+
+        // Generate page numbers
+        for (let i = startPage; i <= endPage; i++) {
+            const span = document.createElement("span");
+            span.textContent = i;
+            span.className = (i === activePage) ? 'active' : '';
+            span.onclick = () => displayTable(i);
+            paginationControls.insertBefore(span, document.getElementById("next"));
+        }
+    }
+
+    function changePage(direction) {
+        const totalRows = document.querySelectorAll("#myTable tbody tr").length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        currentPage += direction;
+
+        // Ensure currentPage stays within bounds
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        displayTable(currentPage);
+    }
+
+    // Initial display
+    displayTable(currentPage);
+          const modalForm = document.getElementById('modalForm');
+                const openFormButton = document.getElementById('openFormButton');
+                const rem = document.getElementById('bil');
+                const pd = document.getElementById('ur');
+                const pad = document.getElementById('urm');
+                function openModal(rem,bill,pad) {
+                    ur.value = rem; // Populate name input
+                    bil.value = bill;
+                    urm.value = pad;
+                    modalForm.style.display = 'flex'; // Show modal
+                }
+                document.querySelectorAll('.del').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const row = event.target.closest('tr'); // Get the closest row
+                        const rem = row.cells[2].innerText; // Get name from first cell
+                        const bill = row.cells[1].innerText;
+                        const pd = row.cells[3].innerText;
+                        openModal(rem,bill,pd); // Open modal with data
+                    });
+                });
+                openFormButton.addEventListener('click', () => {
+                    modalForm.style.display = 'flex'; // Show the modal
+                });
+        
+                // Handle form submission
+                document.getElementById('submitButton').addEventListener('click', () => {
+                    // You can handle form data here
+                    alert('Form submitted!');
+                    modalForm.style.display = 'none'; // Hide the modal after submission
+                });
+        
+                // Handle close button
+                document.getElementById('closeButton').addEventListener('click', () => {
+                    modalForm.style.display = 'none'; // Hide the modal
+                });
+        </script>
+<%-include('footer')%>

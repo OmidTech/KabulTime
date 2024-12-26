@@ -1,0 +1,218 @@
+[
+  {
+    "_id": "6756b8c8e7b163c41481c2de",
+    "description": "QKTBN 001",
+    "currency": "Afg",
+    "benefit": 50,
+    "createdAt": "2024-12-09T09:30:48.125Z",
+    "__v": 0
+  },
+  {
+    "_id": "6756b8dee7b163c41481c2f0",
+    "description": "QKTBN 002",
+    "currency": "Afg",
+    "benefit": 55,
+    "createdAt": "2024-12-09T09:31:10.157Z",
+    "__v": 0
+  },
+  {
+    "_id": "675866840998eade3485a2d2",
+    "description": "QKTBN 003",
+    "currency": "Usd",
+    "benefit": 10,
+    "createdAt": "2024-12-10T16:04:20.410Z",
+    "__v": 0
+  },
+  {
+    "_id": "675867540998eade3485a2f0",
+    "description": "QKTBN 004",
+    "currency": "Usd",
+    "benefit": 15,
+    "createdAt": "2024-12-10T16:07:48.905Z",
+    "__v": 0
+  },
+  {
+    "_id": "675932bdfe66c424a2b3568a",
+    "description": "QKTBN 001",
+    "currency": "USD",
+    "benefit": 100,
+    "createdAt": "2024-12-11T06:35:41.513Z",
+    "__v": 0
+  },
+  {
+    "_id": "67593319fe66c424a2b356ae",
+    "description": "QKTBN 002",
+    "currency": "AFN",
+    "benefit": 14536.000000000002,
+    "createdAt": "2024-12-11T06:37:13.301Z",
+    "__v": 0
+  },
+  {
+    "_id": "675f205c508be1e131276480",
+    "description": "QKTBN 003",
+    "currency": "AFN",
+    "benefit": 3220.000000009999,
+    "createdAt": "2024-12-15T18:30:52.509Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763caed820ed8c4df547eb3",
+    "description": "QKTBN 004",
+    "currency": "AFN",
+    "benefit": 1200,
+    "createdAt": "2024-12-19T07:27:41.578Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763cb04820ed8c4df547ecb",
+    "description": "QKTBN 005",
+    "currency": "USD",
+    "benefit": 100,
+    "createdAt": "2024-12-19T07:28:04.497Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763cc6e820ed8c4df547f03",
+    "description": "QKTBN 006",
+    "currency": "USD",
+    "benefit": 17,
+    "createdAt": "2024-12-19T07:34:06.709Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763d4b0e37d0796a3a029e6",
+    "description": "QKTBN 007",
+    "currency": "USD",
+    "benefit": 17,
+    "createdAt": "2024-12-19T08:09:20.802Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ed66ed6f5664c689d0db",
+    "description": "QKTBN 008",
+    "currency": "AFN",
+    "benefit": 7060,
+    "createdAt": "2024-12-19T09:54:46.291Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ed95ed6f5664c689d0f1",
+    "description": "QKTBN 009",
+    "currency": "USD",
+    "benefit": 108.5,
+    "createdAt": "2024-12-19T09:55:33.494Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ed95ed6f5664c689d0f5",
+    "description": "QKTBN 009",
+    "currency": "USD",
+    "benefit": 108.5,
+    "createdAt": "2024-12-19T09:55:33.494Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ed95ed6f5664c689d0f8",
+    "description": "QKTBN 009",
+    "currency": "USD",
+    "benefit": 108.5,
+    "createdAt": "2024-12-19T09:55:33.495Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ee71183aa86ce86f8b28",
+    "description": "QKTBN 0010",
+    "currency": "AFN",
+    "benefit": 14020,
+    "createdAt": "2024-12-19T09:59:13.179Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ee71183aa86ce86f8b2f",
+    "description": "QKTBN 0010",
+    "currency": "AFN",
+    "benefit": 14020,
+    "createdAt": "2024-12-19T09:59:13.182Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ee71183aa86ce86f8b2c",
+    "description": "QKTBN 0010",
+    "currency": "AFN",
+    "benefit": 14020,
+    "createdAt": "2024-12-19T09:59:13.180Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763efe47c3eaa64c61079fe",
+    "description": "QKTBN 0011",
+    "currency": "USD",
+    "benefit": 300,
+    "createdAt": "2024-12-19T10:05:24.255Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763efe47c3eaa64c6107a05",
+    "description": "QKTBN 0011",
+    "currency": "USD",
+    "benefit": 300,
+    "createdAt": "2024-12-19T10:05:24.257Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763efe47c3eaa64c6107a02",
+    "description": "QKTBN 0011",
+    "currency": "USD",
+    "benefit": 300,
+    "createdAt": "2024-12-19T10:05:24.256Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f0ae82828cef03248338",
+    "description": "QKTBN 0012",
+    "currency": "AFN",
+    "benefit": 14120,
+    "createdAt": "2024-12-19T10:08:46.247Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f0ae82828cef0324833f",
+    "description": "QKTBN 0012",
+    "currency": "AFN",
+    "benefit": 14120,
+    "createdAt": "2024-12-19T10:08:46.250Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f0ae82828cef0324833c",
+    "description": "QKTBN 0012",
+    "currency": "AFN",
+    "benefit": 14120,
+    "createdAt": "2024-12-19T10:08:46.249Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f1b486ef7d71a53f661d",
+    "description": "QKTBN 0013",
+    "currency": "AFN",
+    "benefit": 14120,
+    "createdAt": "2024-12-19T10:13:08.131Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f1b486ef7d71a53f6624",
+    "description": "QKTBN 0013",
+    "currency": "AFN",
+    "benefit": 14120,
+    "createdAt": "2024-12-19T10:13:08.133Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f1b486ef7d71a53f6621",
+    "description": "QKTBN 0013",
+    "currency": "AFN",
+    "benefit": 14120,
+    "createdAt": "2024-12-19T10:13:08.132Z",
+    "__v": 0
+  }
+]

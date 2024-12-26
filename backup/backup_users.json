@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "67626817d70dd6b47586b01d",
+    "name": "Omid",
+    "username": "omid@g.com",
+    "password": "$2a$10$hfr2sNdD2J24gPW7DY/Oe.28ekcJ2yLNSgpIcJoEcRG2PUAMuJtIK",
+    "role": "Admin"
+  },
+  {
+    "_id": "6762cf71a8924da02ddf7021",
+    "name": "zuhoor",
+    "username": "zuhoor@g.com",
+    "password": "$2a$10$XWQZSqbPnvcRTXR2M51P8.ipFUcyNdbTYSGiKQkn74jPl2cQyDzHG",
+    "role": "User",
+    "createdAt": "2024-12-18T13:34:41.543Z",
+    "__v": 0
+  }
+]

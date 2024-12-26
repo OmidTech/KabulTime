@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "6759318cfe66c424a2b3564c",
+    "item": "Transformer J",
+    "createdAt": "2024-12-11T06:30:36.006Z",
+    "__v": 0,
+    "currency": "USD",
+    "price": 1000,
+    "profit": 100,
+    "purchase_price": 900
+  },
+  {
+    "_id": "675931cdfe66c424a2b35658",
+    "item": "Transformer W",
+    "createdAt": "2024-12-11T06:31:41.256Z",
+    "__v": 0,
+    "currency": "USD",
+    "price": 1400,
+    "profit": 100,
+    "purchase_price": 1300
+  },
+  {
+    "_id": "675f1e3b508be1e131276461",
+    "item": "Transformer W500",
+    "createdAt": "2024-12-15T18:21:47.353Z",
+    "__v": 0,
+    "currency": "AFN",
+    "price": 5600,
+    "profit": 600,
+    "purchase_price": 5000
+  }
+]

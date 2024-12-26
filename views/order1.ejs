@@ -1,0 +1,272 @@
+<%-include('header')%>
+  <script>
+    function currency(){
+      let pr=$('#pprice').val();
+      let pro=$('#pup').val();
+      let cr=$('#sc').val();
+      
+    }
+    $(document).ready(function () {
+      const itemContainer = document.getElementById('itemContainer');
+
+    // Event delegation for select change
+    
+    function updateResult() {
+        
+        const valueA = parseFloat($('#gt').val()) || 0; // Get value from A
+        const valueB = parseFloat($('#pd').val()) || 0; // Get value from B
+        const valuec = parseFloat($('#dis').val()) || 0; // Get value from B
+        const value1 = parseFloat($('#prof').val()) || 0;
+        const value2 = parseFloat($('#pr').val()) || 0;
+        const result = valueA - valuec - valueB; // Calculate A - B
+        const profit=value2-valuec;
+        $('#rm').val(result.toFixed(2)); // Update C with the result
+        $('#prof').val(profit.toFixed(2));
+    }
+    $('#pd').on('input', updateResult);
+    $('#dis').on('input', updateResult);
+
+      function calculateSum(group) {
+        const value1 = parseFloat(group.find('.pprice').val()) || 0;
+        const value3 = parseFloat(group.find('.pup').val()) || 0;
+        const value2 = parseFloat(group.find('.qquan').val()) || 0;
+        const profit=value2*value3;
+        const sum = value1 * value2
+        group.find('.total').val(sum);
+        group.find('.pt').val(profit);
+        updateTotal();
+      }
+
+      $('#dynamicForm').on('input', '.qquan, .pprice, .pup', function () {
+        const group = $(this).closest('.data');
+        calculateSum(group);
+      });
+
+      function updateTotal() {
+        let total = 0;
+        let pt= 0;
+        $('.total').each(function () {
+          total += parseFloat($(this).val()) || 0;
+        });
+        $('#gt').val(total.toFixed(2));
+        $('#rm').val(total.toFixed(2));
+        $('.pt').each(function () {
+          pt += parseFloat($(this).val()) || 0;
+        });
+        $('#prof').val(pt.toFixed(2));
+        $('#pr').val(pt.toFixed(2));
+      }
+      function addRow() {
+
+        const newRow = `
+                    <div class="data row mb-3">
+
+                        <div class="col">
+            <select id="sit" name="sit" class="form-select" required>
+              <option value="" disabled selected>Select Item</option>
+              <% iit.forEach(function(c){%>
+                <option value="<%=c.item %>">
+                  <%=c.item %>
+                </option>
+                <%})%>
+            </select>
+          </div>
+          <div id="pricet" class="col">
+            <input id="sunit" name="sunit" type="text" class="sunit form-control" readonly placeholder="Unit" required
+              step="0.01">
+              <input id="curr" hidden  name="curr" type="text" class="curr form-control" readonly placeholder="Currency" required
+              step="0.01">
+          </div>
+          <div id="pricet" class="col">
+            <input id="pprice" name="pprice" type="number" class="pprice form-control" placeholder="Price per Unit"
+              required step="0.01">
+              <input id="pup" name="pup" hidden  type="number" class="pup form-control" placeholder="Price per Unit"
+              required step="0.01">
+          </div>
+          <div class="col">
+            <input id="qquan" name="qquan" type="number" class="qquan form-control" placeholder="Quantity" required
+              min="1">
+          </div>
+          <div class="col">
+            <input id="tt" name="tt" type="number" class="total form-control" placeholder="Total" readonly min="0">
+            <input id="pt" name="pt" hidden type="number" class="pt form-control" placeholder="pt" readonly min="0">
+          </div>
+          <div class="col-auto">
+            <button type="button" style="color: red;" class="btn removeRow"><i class="ti ti-xbox-x fs-6"></i></button>
+          </div>
+        </div>
+                `;
+        $('#dynamicForm .row:last').after(newRow);
+        // Focus on the first input of the new row
+        $('#dynamicForm .row:last select:first').focus();
+        attachPriceChangeEvent($('#dynamicForm .row select[name="sit"]'));
+        attachQuantityCheckEvent($('#dynamicForm .row .qquan'));
+      }
+      
+      $('#addRow').click(addRow);
+     
+      // Add a new row when the Tab key is pressed on the last input of the row
+      $(document).on('keydown', '.qquan', function (e) {
+        if (e.key === 'Tab' && $(this).is(':last-child')) {
+          e.preventDefault(); // Prevent the default tabbing behavior
+          addRow(); // Add a new row
+
+        }
+      });
+      // Remove the row when the Remove button is clicked
+      $(document).on('click', '.removeRow', function () {
+        $(this).closest('.row').remove();
+      });
+    });
+    
+  </script>
+  <div class="container-fluid">
+    
+    <% cur.forEach(function(c){%>
+    <form action="/updcr/<%=c._id%>" class="pb-2" method="post">
+      <div class="mb-2 col-lg-3">
+        <label class=" form-label" for="basic-default-sun">1 USD/AFG</label>
+        
+        <input id="cr" name="cr" type="number" class="text-danger form-control" placeholder="Currency Rate USD" value="<%=c.rate%>" required
+          step="0.01">
+          
+      </div>
+      <div class="mb-3 col-lg-3">
+        
+        <button class="btn btn-outline-primary w-100 float-end" type="submit">Update</button>
+        
+      </div>
+    </form>
+    <%})%>
+    <div id="itemContainer" class="container  mt-5">
+      <h3 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;color: rgb(34, 135, 230);" class="border-bottom text-end border-primary">Sales Form</h3>
+      <form id="dynamicForm" method="post" action="/savedorder">
+
+
+        <div class="col-lg-3">
+          <label class="form-label" for="bil">Bill No</label>
+
+          <input id="bil" name="bil" style="border: 0;" type="number" class="form-control" placeholder="Bill No"
+            value="<%=(bb && bb.bill) ? (bb.bill + 1) : 1%>">
+        </div>
+        <div class="col-lg-3 float-end">
+
+
+          <input id="biln" name="biln" style="border: 0; text-align: right;" type="text" class="form-control"
+            placeholder="Bill No" value="QKTBN 00<%=(bb && bb.bill) ? (bb.bill + 1) : 1%>" required step="0.01">
+        </div>
+        <div class="row">
+        <div class="col-lg-4 mb-3">
+          <label class="form-label" for="basic-default-fullname">Select Customer</label>
+
+          <select  id="scn" name="scn" class="form-select" required>
+            <option value="" disabled selected>Select Customer</option>
+            <% cit.forEach(function(p){%>
+              <option value="<%=p.name %>">
+                <%=p.name %>
+              </option>
+              <%})%>
+          </select>
+        </div>
+        <div class="mb-3 col-lg-4">
+          <label class="form-label" for="basic-default-sun">Select Currency</label>
+          <select id="sc" name="sc" class="sc form-select" required>
+            <option value="" disabled >Currency</option>
+            <option value="AFN" selected>Afghani</option>
+            <option value="USD">Dollar</option>
+            
+          </select>
+        </div>
+        
+      </div>
+        <div  class="data row mb-3">
+
+          <div class="col">
+            <select onclick="price()" id="sit" name="sit" class="form-select" required>
+              <option value="" disabled selected>Select Item</option>
+              <% iit.forEach(function(c){%>
+                <option value="<%=c.item %>">
+                  <%=c.item %>
+                </option>
+                <%})%>
+            </select>
+          </div>
+          <div id="pricet" class="col">
+            <input id="sunit"  name="sunit" type="text" class="sunit form-control" readonly placeholder="Unit" required
+              step="0.01">
+              <input id="curr" hidden name="curr" type="text" class="curr sunit form-control" readonly placeholder="Currency" required
+              step="0.01">
+          </div>
+          <div id="pricet" class="col">
+            <input id="pprice" name="pprice" toFixed="2" type="number" class="pprice form-control" placeholder="Price per Unit"
+              required step="0.01">
+              <input id="pup" name="pup" toFixed="2" hidden type="number" class="pup form-control" placeholder="Price per Unit"
+              required step="0.01">
+          </div>
+          <div class="col">
+            <input id="qquan" name="qquan" type="number" class="qquan form-control" placeholder="Quantity" required
+              min="1">
+          </div>
+          <div class="col">
+            <input id="tt" name="tt" toFixed="2" type="number" class="total form-control" placeholder="Total" readonly min="0">
+            <input id="pt" name="pt" toFixed="2" hidden type="number" class="pt form-control" placeholder="pt" readonly min="0">
+          </div>
+          <div class="col-auto">
+            <button type="button" style="color: red;" class="btn removeRow"><i class="ti ti-xbox-x fs-6"></i></button>
+          </div>
+        </div>
+
+        <button type="button" id="addRow" class="btn mb-3 col-lg-12 float-end btn-primary">Add Another Row</button>
+    </div>
+
+    <div class=" mb-3 mt-4 mx-3 float-end">
+      <button id="bt" type="submit" class="btn mb-3 form-control btn-success">Submit</button>
+    </div>
+    <div class="col mb-3 mx-3 float-end">
+      <label class="form-label" for="pd">Payment</label>
+
+      <input id="pd" name="pd"  type="number" class="pd mb-3 form-control" step="0.01" placeholder="Payment" value="0" min="0">
+
+    </div>
+    <div class="col mb-3 mx-3 float-end">
+      <label class="form-label" for="dis">Discount</label>
+
+      <input id="dis" name="dis"  type="number" class="dis mb-3 form-control" placeholder="Discount" value="0" min="0">
+    </div>
+    <div class="col mb-3 mx-3 float-end">
+      <label class="form-label" for="rm">Remain</label>
+
+      <input id="rm" name="rm"  type="number" class="rm mb-3 form-control" placeholder="Remain" readonly min="0">
+    </div>
+
+    <div class="col mb-3 float-end">
+      <label class="form-label" for="gt">Total Amount</label>
+      <input id="gt" name="gt"  type="number" class="gt mb-3 form-control" placeholder="Grand Total" readonly min="0">
+      <input id="prof" hidden  name="prof" type="number"  class="prof mb-3 form-control" placeholder="Profit" readonly min="0">
+      <input id="pr" toFixed="2" hidden name="pr" type="number"  class="pr mb-3 form-control" placeholder="Profit" readonly min="0">
+    </div>
+  </div>
+  </form>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Function to sum the values
+    function sumInputs() {
+      const num1 = parseFloat(document.getElementById('pprice').value) || 0;
+      const num2 = parseFloat(document.getElementById('pquantity').value) || 0;
+      const num3 = parseFloat(document.getElementById('pup').value) || 0;
+      const result = num1 * num2;
+      const p=num2*num3;
+      document.getElementById('total').value = result;
+      document.getElementById('pt').value = p;
+      addall();
+    };
+
+
+
+  </script>
+
+  </div>
+  <%-include('footer')%>

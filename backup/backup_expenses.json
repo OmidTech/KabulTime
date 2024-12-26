@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "67593221fe66c424a2b35667",
+    "description": "Breakfast",
+    "catagory": "Shop",
+    "currency": "AFN",
+    "amount": 130,
+    "createdAt": "2024-12-11T06:33:05.699Z",
+    "__v": 0
+  },
+  {
+    "_id": "67665e690e324d1054a8e587",
+    "description": "Breakfast",
+    "catagory": "Food",
+    "currency": "AFN",
+    "amount": 200,
+    "createdAt": "2024-12-21T06:21:29.287Z",
+    "__v": 0
+  }
+]

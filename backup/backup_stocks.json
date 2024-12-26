@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "6759318c005357811129a8ad",
+    "item": "Transformer J",
+    "__v": 0,
+    "lastUpdated": "2024-12-11T06:30:36.003Z",
+    "quantity": 14,
+    "unit": "Pcs"
+  },
+  {
+    "_id": "675931cd005357811129a8cd",
+    "item": "Transformer W",
+    "__v": 0,
+    "lastUpdated": "2024-12-11T06:31:41.255Z",
+    "quantity": 10,
+    "unit": "Package"
+  },
+  {
+    "_id": "675f1e3b005357811129b2ac",
+    "item": "Transformer W500",
+    "__v": 0,
+    "lastUpdated": "2024-12-15T18:21:47.274Z",
+    "quantity": 20,
+    "unit": "Pcs"
+  }
+]

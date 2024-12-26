@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qaderi Kabul Time</title>
+  <link rel="shortcut icon" type="image/png" href="/images/logos/Qkt.png" />
+  <link rel="stylesheet" href="/css/styles.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link href="/images/logos/Qkt.png" rel="icon">
+  <link href="/images/logos/Qkt.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="/images/qaderikt.jpg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Dashboard</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/" aria-expanded="false">
+                <span>
+                  <i class="bi text-primary bi-grid-fill"></i>
+                </span>
+                <span class="hide-menu">Home</span>
+              </a>
+            </li>
+          
+            
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/purchase" aria-expanded="false">
+                <span>
+                  <i class="bi text-dark bi-bag"></i>
+                </span>
+                <span class="hide-menu">Purchase Products</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/order1" aria-expanded="false">
+                <span>
+                  <i class="bi text-success bi-receipt-cutoff"></i>
+                </span>
+                <span class="hide-menu">Sales</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/expense" aria-expanded="false">
+                <span>
+                  <i class="bi text-danger bi-graph-down"></i>
+                </span>
+                <span class="hide-menu">Expenses</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/orderReturn" aria-expanded="false">
+                <span>
+                  <i class="bi text-primary bi-arrow-return-right"></i>
+                </span>
+                <span class="hide-menu">Sales Return</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/customer" aria-expanded="false">
+                <span>
+                  <i class="bi text-primary bi-person"></i>
+                </span>
+                <span class="hide-menu">Customers</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/invoice" aria-expanded="false">
+                <span>
+                  <i class="bi text-danger bi-search"></i>
+                </span>
+                <span class="hide-menu">Print Invoice</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/saleslist" aria-expanded="false">
+                <span>
+                  <i class="bi text-success bi-list-task"></i>
+                </span>
+                <span class="hide-menu">Sales Payments</span>
+              </a>
+            </li>
+           
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/stock" aria-expanded="false">
+                <span>
+                  <i class="bi  text-dark bi-house-check"></i>
+                </span>
+                <span class="hide-menu">Stock</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/pricelist" aria-expanded="false">
+                <span>
+                  <i class="bi text-danger bi-tags"></i>
+                </span>
+                <span class="hide-menu">Price List</span>
+              </a>
+            </li>
+          
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/salesReport" aria-expanded="false">
+                <span>
+                  <i class="bi text-primary bi-newspaper"></i>
+                </span>
+                <span class="hide-menu">Sales Report</span>
+              </a>
+            </li>
+            
+          </li>
+        
+         
+            <li class="nav-small-cap">
+              
+              <span class="hide-menu">AUTH</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/userpage" aria-expanded="false">
+                <span>
+                  <i class="bi text-primary bi-people"></i>
+                </span>
+                <span class="hide-menu">Users</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/register" aria-expanded="false">
+                <span>
+                  <i class="bi text-success bi-person-add"></i>
+                </span>
+                <span class="hide-menu">Register</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/drawings" aria-expanded="false">
+                <span>
+                  <i class="bi text-danger bi-person-add"></i>
+                </span>
+                <span class="hide-menu">Drawings</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/backupr" aria-expanded="false">
+                <span>
+                  <i class="bi  bi-person-add"></i>
+                </span>
+                <span class="hide-menu">Backup and Restore</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <span class="hide-menu"></span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link"  aria-expanded="false">
+                <span>
+                 
+                </span>
+                <span class="hide-menu"></span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link"  aria-expanded="false">
+                <span>
+                  
+                </span>
+                <span class="hide-menu"></span>
+              </a>
+            </li>
+          </ul>
+          
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+            
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              
+              <a href="/logout" target="_blank" class="btn btn-danger btn-sm m-2">Log Out</a>
+              <a class=" btn btn-outline-dark btn-sm m-2"><%=us.username%></a>
+            </ul>
+          </div>
+        </nav>
+      </header>

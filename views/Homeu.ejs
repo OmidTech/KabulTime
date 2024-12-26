@@ -1,0 +1,116 @@
+<%-include('header')%>
+
+<style>
+  #myForm {
+      display: none; /* Initially hide the form */
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  }
+</style>
+<div class="container-fluid">
+  
+  
+  <div class="row">
+    <div class="col-lg-6 d-flex align-items-stretch">
+      <div class="card w-100">
+          <div class="card-body p-4">
+              <div class="mb-4">
+                  <h5 style="color: rgb(219, 135, 17);" class="card-title fw-semibold">User Transactions</h5>
+              </div>
+              <ul class="timeline-widget mb-0 position-relative mb-n5">
+                  <% uas.forEach(function(p){%>
+                      <% if(p.username===us.username){%>
+                          <li class="timeline-item jk d-flex position-relative overflow-hidden">
+                              <div class="timeline-time fs-3 text-dark flex-shrink-0 text-end"><b><%=p.username%></b></div>
+                              <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                                  <span class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
+                                  <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                              </div>
+                              <div class="timeline-desc fs-3 text-dark mt-n1 mb-2">
+                                  <b><%=p.createdAt.toString().split(' GMT')[0] %></b><br>
+                                  <b style="color: rgb(110, 156, 2);"><%=p.type %></b><br>
+                                  <b><%=p.description %></b>
+                              </div>
+                          </li>
+                      <% }}); %>
+              </ul>
+              
+          </div>
+      </div>
+  </div>
+  
+
+  
+    <div class="col-lg-6 d-flex align-items-stretch">
+      <div class="card w-100">
+        <div class="card-body p-4">
+          <h5 style="color: rgb(12, 12, 12);" class="card-title fw-semibold mb-4">Less # of items</h5>
+          
+          <div class="table-responsive">
+            
+              
+              <table class="table text-nowrap fs-2 col-sm-12 mb-0 align-middle" id="myTable">
+                <thead class="text-dark fs-3">
+                  <tr>
+                    
+                    <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">#</h6>
+                    </th>
+                    <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">Item Name</h6>
+                    </th>
+                    <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">Unit</h6>
+                    </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Quantity</h6>
+                      </th>
+                      
+                    
+                  </tr>
+                </thead>
+                <tbody id="dt">
+                    <% var b=0 %>
+                      <% bb.forEach(function(p){%>
+                        <% if(p.quantity<16){ %>
+                  <tr>
+                    
+                    <td class="border-bottom-0">
+                      <p class="fw-semibold mb-0"><%=b+=1%></p>
+                    </td>
+                    <td class="border-bottom-0">
+                      <p class="fw-semibold mb-0"><%=p.item %></p>
+                    </td>
+                    <td class="border-bottom-0">
+                      <p class="fw-semibold mb-0"><%=p.unit %></p>
+                    </td>
+                    <td class="border-bottom-0">
+                      <span class="fw-semibold"><%=p.quantity %></span>
+                      </td>
+                      
+                  </tr>
+                <% }})%>
+                  
+                              
+                </tbody>
+                
+              </table>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+
+<%-include('footer')%>

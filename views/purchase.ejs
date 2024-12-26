@@ -1,0 +1,332 @@
+<%-include('header')%>
+  <div class="container-fluid">
+ 
+    <div class="col-xl">
+      <h4 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;color: rgb(13, 134, 234);" class="border-bottom text-start border-primary">Purchase Form</h4>
+
+      <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+
+          <small class="text-muted float-end"></small>
+        </div>
+        <div class="card-body">
+          <form method="post" action="/newpurchase">
+            <div class="row">
+              <div class="mb-3 col-lg-6">
+                <label class="form-label" for="basic-default-fullname">Product Name</label>
+                <input type="text" class="form-control" name="pname" id="pname" required placeholder="Product">
+              </div>
+              <div class="mb-3 col-lg-6">
+                <label class="form-label" for="basic-default-sun">Select unit</label>
+                <select id="sun" name="sun" class="form-select" required>
+                  <option value="" disabled selected>Select Unit</option>
+                  <option value="Pcs">Pcs</option>
+                  <option value="M">M</option>
+                  <option value="Cm">Cm</option>
+                  <option value="Km">Km</option>
+                  <option value="Kg">Kg</option>
+                  <option value="L">L</option>
+                  <option value="T">T</option>
+                  <option value="Bundle">Bundle</option>
+                  <option value="Package">Package</option>
+                  <option value="Doz">Doz</option>
+                  <option value="Box">Box</option>
+                </select>
+              </div>
+              <div class="mb-3 col-lg-6">
+                <label class="form-label" for="basic-default-sun">Select Currency</label>
+                <select id="sc" name="sc" class="form-select" required>
+                  <option value="" disabled >Currency</option>
+                  <option value="AFN" selected>Afghani</option>
+                  <option value="USD">Dollar</option>
+                  
+                </select>
+              </div>
+              <div class="mb-3 col-lg-6">
+                <label class="form-label" for="basic-default-company">Price pp</label>
+                <input type="text" class="form-control" onkeyup="sumInputs()" required name="pprice" id="pprice" placeholder="Price">
+              </div>
+              <div class="mb-3 col-lg-6">
+                <label class="form-label" for="basic-default-company">Quantity</label>
+                <input type="number" class="form-control" onkeyup="sumInputs()" required name="pquantity" id="pquantity"
+                  placeholder="Quantity">
+              </div>
+              <div class="mb-3 col-lg-6">
+                <label class="form-label" for="total">Total</label>
+                <input type="text" class="form-control" readonly  name="total" id="total"
+                  placeholder="Total">
+
+              </div>
+              <button  type="submit" class="btn btn-primary">Save</button>
+            
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Function to sum the values
+      function sumInputs() {
+        const num1 = parseFloat(document.getElementById('pprice').value) || 0;
+        const num2 = parseFloat(document.getElementById('pquantity').value) || 0;
+        const result = num1 * num2;
+        document.getElementById('total').value = result;
+      }
+
+    </script>
+
+    <div class="col-lg-12 col-m-12 col-sm-12 d-flex align-items-stretch">
+      <div class="card w-100">
+        <div class="card-body p-4">
+          <h5 class="card-title text-center fw-semibold mb-4">Recent Purchases</h5>
+          <input type="text" class="float-end" name="search" id="search" placeholder="Search">
+
+          <div class="table-responsive">
+            <button id="toggleButton1">Filter Date</button>
+            <div id="myForm1" class="col-lg-8">
+              <div class="row">
+                <div class="col-auto">
+              <label for="startDate">Start Date:</label>
+              <input class="form-control " type="datetime-local" name="startDate" id="startDate" required>
+            </div>
+            <div class="col-auto">
+              <label for="endDate">End Date:</label>
+              <input class="form-control" type="datetime-local" name="endDate" id="endDate" required></div>
+              <div class="col-auto">
+              <button id="fillt" onclick="filterdatex();" class="btn fillt float-end mt-3 btn-dark">Filter</button></div>
+            </div>
+            </div>
+            <table class="table text-nowrap mb-0 col-sm-12 align-middle" id="expense-table">
+              <thead class="text-dark fs-4">
+                <tr>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">No</h6>
+                  </th>
+
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Name</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Unit</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Currency</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Price</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Quantity</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Total</h6>
+                  </th>
+                  <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">Action</h6>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+               
+                  <% pro.forEach(function(p){%>
+                    <tr>
+
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">
+                          <%= p.createdAt.toString().split(' GMT')[0] %>
+                        </h6>
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">
+                          <%=p.name %>
+                        </h6>
+
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">
+                          <%=p.unit %>
+                        </h6>
+
+                      </td>
+                      <td class="border-bottom-0">
+                        <h6 class="fw-semibold mb-1">
+                          <%=p.currency %>
+                        </h6>
+
+                      </td>
+                      <td class="border-bottom-0">
+                        <p class="mb-0 fw-normal">
+                          <%=p.price %>
+                        </p>
+                      </td>
+                      <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                          <p class="mb-0 fw-normal">
+                            <%=p.quantity %>
+                          </p>
+                        </div>
+                      </td>
+                      <td class="border-bottom-0">
+                        <span class="badge bg-primary rounded-3 fw-semibold">
+                          <%=p.total %>
+                        </span>
+                      </td>
+                      <td class="border-bottom-0">
+
+
+                        <a onclick="show(event)" href="/purchasedeleted/<%= p._id%>/<%= p.name%>/<%= p.quantity%>"
+                          class="btn btn-sm" style="background-color: rgb(247, 17, 67); color: rgb(241, 241, 241);">
+                          <i class="bi bi-trash3 ict"></i></a>
+                      </td>
+                    </tr>
+                    <% })%>
+                    <tfoot>
+                      <tr>
+                          <td colspan="6" style="font-weight:600; text-align: center;">Grand Total</td>
+                          <td id="total-amount" style="font-weight: bolder; color: rgb(200, 53, 53);">0</td>
+                          
+                          
+                      </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination" id="pagination-controls">
+            <button id="prev" onclick="changePage(-1)">Previous</button>
+            <!-- Page numbers will be generated here -->
+            <button id="next" onclick="changePage(1)">Next</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const rowsPerPage = 30; // Number of rows per page
+    let currentPage = 1;
+
+    function displayTable(page) {
+        const rows = document.querySelectorAll("#expense-table tbody tr");
+        const totalRows = rows.length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        
+        // Calculate start and end indices for current page
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        // Hide all rows and only show the selected page's rows
+        rows.forEach((row, index) => {
+            row.style.display = (index >= start && index < end) ? '' : 'none';
+        });
+
+        // Update row count
+
+        // Enable/disable Previous and Next buttons
+        document.getElementById("prev").disabled = page === 1;
+        document.getElementById("next").disabled = page === totalPages;
+
+        // Generate page numbers
+        generatePaginationControls(totalPages, page);
+    }
+
+    function generatePaginationControls(totalPages, activePage) {
+        const paginationControls = document.getElementById("pagination-controls");
+
+        // Clear previous page numbers
+        const pageNumbers = paginationControls.querySelectorAll("span");
+        pageNumbers.forEach(span => span.remove());
+
+        // Determine the range of page numbers to display
+        const maxPageNumbers = 10; // Maximum number of page numbers to display
+        let startPage, endPage;
+
+        if (totalPages <= maxPageNumbers) {
+            // If total pages are less than or equal to max, show all
+            startPage = 1;
+            endPage = totalPages;
+        } else {
+            // Calculate start and end page numbers to show
+            startPage = Math.max(1, activePage - Math.floor(maxPageNumbers / 2));
+            endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
+
+            // Adjust startPage if endPage exceeds totalPages
+            if (endPage === totalPages) {
+                startPage = Math.max(1, totalPages - maxPageNumbers + 1);
+            }
+        }
+
+        // Generate page numbers
+        for (let i = startPage; i <= endPage; i++) {
+            const span = document.createElement("span");
+            span.textContent = i;
+            span.className = (i === activePage) ? 'active' : '';
+            span.onclick = () => displayTable(i);
+            paginationControls.insertBefore(span, document.getElementById("next"));
+        }
+    }
+
+    function changePage(direction) {
+        const totalRows = document.querySelectorAll("#expense-table tbody tr").length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        currentPage += direction;
+
+        // Ensure currentPage stays within bounds
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        displayTable(currentPage);
+    }
+
+    // Initial display
+    displayTable(currentPage);
+    myForm1.style.display = 'none';
+  toggleButton1.addEventListener('click', () => {
+        if (myForm1.style.display === 'none' || myForm1.style.display === '') {
+            myForm1.style.display = 'block'; // Show the form
+            toggleButton1.textContent = 'Hide Filter'; // Change button text
+        } else {
+            myForm1.style.display = 'none'; // Hide the form
+            toggleButton1.textContent = 'Fillter Date'; // Change button text
+        }
+       
+    });
+    const searchInput = document.getElementById('search');
+    const table = document.getElementById('expense-table');
+    const totalAmountCell = document.getElementById('total-amount');
+
+    // Function to update the total based on visible rows
+    function updateTotal() {
+        let total = 0;
+        const rows = table.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+            if (row.style.display !== 'none') {
+                const amountCell = row.cells[6]; // Assuming amount is in the 4th column
+                total += parseFloat(amountCell.textContent) || 0;
+            }
+        });
+        
+        totalAmountCell.textContent = total.toFixed(2); // Format to 2 decimal places
+    }
+
+    // Function to filter the table based on the search input
+    searchInput.addEventListener('input', function() {
+        const filter = searchInput.value.toLowerCase();
+        const rows = table.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+            const descriptionCell = row.cells[1].textContent.toLowerCase();
+            const catagorycell = row.cells[2].textContent.toLowerCase();
+            const currencycell = row.cells[3].textContent.toLowerCase(); // Assuming description is in the 2nd column
+            if (descriptionCell.includes(filter)||catagorycell.includes(filter)||currencycell.includes(filter)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        updateTotal(); // Update total after filtering
+    });
+
+    // Initial total calculation
+    updateTotal();
+  </script>
+  <%-include('footer')%>

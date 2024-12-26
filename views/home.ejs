@@ -1,0 +1,327 @@
+<%-include('header')%>
+
+<style>
+  #myForm {
+      display: none; /* Initially hide the form */
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+  }
+</style>
+<div class="container-fluid">
+  <div class="row g-4">
+    <div class="col-sm-6  col-xl-3">
+      <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+          <i style="color: white;" class="bi bi-graph-up-arrow fs-6 fa-3x"></i>
+          <div class="ms-3">
+              <p style="color: white; font-weight: bold;" class="mb-2">Today's Sale</p>
+              <% var c = 0; %>
+              <% var d = 0; %>
+<% ord.forEach(function(s) { %>
+  <% if(s.currency==='AFN'){ %>
+    <% c += s.totalAmount; %>
+    <% }else if(s.currency==='USD'){ %>
+      <% d += s.totalAmount; }%>
+<% }); %>
+              <h6 style="color: white; color: rgb(7, 245, 78) "  class="mb-0">AFN   <%= c %></h6>
+              <h6 style="color: white; color: rgb(9, 204, 243);"  class="mb-0">USD   <%= d %></h6>
+              
+          </div>
+      </div>
+  </div>
+  <div class="col-sm-6  col-xl-3">
+    <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+        <i style="color: white;" class="bi bi-wallet fs-6 fa-3x"></i>
+        <div class="ms-3">
+            <p style="color: white; font-weight: bold;" class="mb-2">Today's Revenue</p>
+            <% var a=0; %>
+              <% var b=0; %>
+                <% rev.forEach(function(s) { %>
+                  <% if(s.currency==='AFN' ){ %>
+                    <% a +=s.benefit; %>
+                      <% }else if(s.currency==='USD' ){ %>
+                        <% b +=s.benefit; }%>
+                          <% }); %>
+            <h6 style="color: white; color: rgb(7, 245, 78) "   class=" mb-0">AFN   <%= a %></h6>
+            <h6 style="color: white; color: rgb(9, 204, 243);"  class=" mb-0">USD   <%= b %></h6>
+        </div>
+    </div>
+</div>
+<div class="col-sm-6  col-xl-3">
+  <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+      <i style="color: white;" class="bi bi-wallet fs-6 fa-3x"></i>
+      <div class="ms-3">
+          <p style="color: white; font-weight: bold;" class="mb-2">Today's Expense</p>
+          <% var e=0; %>
+            <% var x=0; %>
+              <% exp.forEach(function(ex) { %>
+                <% if(ex.currency==='AFN' ){ %>
+                  <% e +=ex.amount; %>
+                    <% }else if(ex.currency==='USD' ){ %>
+                      <% x +=ex.amount; }%>
+                        <% }); %>
+          <h6 style="color: white; color: rgb(7, 245, 78) "   class=" mb-0">AFN   <%= e %></h6>
+          <h6 style="color: white; color: rgb(9, 204, 243);"  class=" mb-0">USD   <%= x %></h6>
+      </div>
+  </div>
+</div>
+    <div class="col-sm-6  col-xl-3">
+        <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+            <i style="color: white;" class="bi bi-bank fs-6 fa-3x"></i>
+            <div class="ms-3">
+                <p style="color: white; font-weight: bold;" class="mb-2">Total Revenue</p>
+                <h6 style="color: white; color: rgb(7, 245, 78) "  id="gta" class="mb-0"></h6>
+                <h6 style="color: white; color: rgb(9, 204, 243);" id="gtg" class="mb-0"></h6>
+                
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+  
+  <button class="mt-3" id="toggleButton1">Filter Date</button>
+  <div id="myForm1" class="col-lg-8">
+    <div class="row">
+      <div class="col-auto">
+    <label for="startDate">Start Date:</label>
+    <input class="form-control " type="datetime-local" name="startDate" id="startDate" required>
+  </div>
+  <div class="col-auto">
+    <label for="endDate">End Date:</label>
+    <input class="form-control" type="datetime-local" name="endDate" id="endDate" required></div>
+    <div class="col-auto">
+    <button id="fil" onclick="filterdate();" class="btn fil float-end mt-3 btn-dark">Filter</button></div>
+  </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-4 d-flex align-items-stretch">
+      
+      <div class="card w-100">
+        <div class="card-body p-4">
+          <div class="mb-4">
+            <h5 style="color: rgb(219, 135, 17);" class="card-title fw-semibold">User Transactions</h5>
+          </div>
+          <ul class="timeline-widget mb-0 position-relative mb-n5">
+            <% uas.forEach(function(p){%>
+            <li class="timeline-item d-flex position-relative overflow-hidden">
+              <div  class="timeline-time text-dark flex-shrink-0 text-end"><p ><%=p.username%></p></div>
+              <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                <span class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
+                <span class="timeline-badge-border d-block flex-shrink-0"></span>
+              </div>
+              <div class="timeline-desc fs-2 text-dark mt-n1"><p><%=p.createdAt.toString().split(' GMT')[0] %></p><b style="color: rgb(110, 156, 2);"><%=p.type %></b><p><%=p.description %></p></div>
+            </li>
+            <% })%>
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 d-flex align-items-stretch">
+      <div class="card w-100">
+        <div class="card-body p-4">
+          <input type="text" onkeyup="myFunctionspR()" class="float-end mb-1"  name="srsearch" id="srsearch" placeholder="Search">
+          <h5 style="color: rgb(12, 12, 12);" class="card-title fw-semibold mb-4">Recent Transactions Revenue</h5>
+          
+          <div class="table-responsive">
+            
+              
+              <table class="table text-nowrap fs-2 col-sm-12 mb-0 align-middle" id="myTable">
+                <thead class="text-dark fs-3">
+                  <tr>
+                    
+                    <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">Date</h6>
+                    </th>
+                    <th class="border-bottom-0">
+                      <h6 class="fw-semibold mb-0">Bill No</h6>
+                    </th>
+                   
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Currency</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Amount</h6>
+                      </th>
+                    
+                  </tr>
+                </thead>
+                <tbody id="dt">
+                      <% bb.forEach(function(p){%>
+                  <tr>
+                    
+                    <td class="border-bottom-0">
+                      <p class="fw-semibold mb-0"><%=p.createdAt.toString().split(' GMT')[0] %></p>
+                    </td>
+                    <td class="border-bottom-0">
+                      <p class="fw-semibold mb-0"><%=p.description %></p>
+                    </td>
+                    <td class="border-bottom-0">
+                      <p class="fw-semibold mb-0"><%=p.currency %></p>
+                    </td>
+                    <td class="border-bottom-0">
+                      <span class="fw-semibold"><%=p.benefit %></span>
+                      </td>
+                      
+                  </tr>
+                <% })%>
+                  
+                              
+                </tbody>
+                <tfoot>
+                  <tr>
+                      <td colspan="3" style="font-weight: bolder; text-align: center;">Grand Total</td>
+                      <td id="tgt" class=" fs-2" style="font-weight: bolder;"><h6>0</h6></td>
+                      
+                  </tr>
+              </tfoot>
+              </table>
+            <div class="pagination" id="pagination-controls">
+              <button id="prev" onclick="changePage(-1)">Previous</button>
+              <!-- Page numbers will be generated here -->
+              <button id="next" onclick="changePage(1)">Next</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+
+<script>
+ const rowsPerPage = 30; // Number of rows per page
+    let currentPage = 1;
+
+    function displayTable(page) {
+        const rows = document.querySelectorAll("#myTable tbody tr");
+        const totalRows = rows.length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        
+        // Calculate start and end indices for current page
+        const start = (page - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+
+        // Hide all rows and only show the selected page's rows
+        rows.forEach((row, index) => {
+            row.style.display = (index >= start && index < end) ? '' : 'none';
+        });
+
+        // Update row count
+
+        // Enable/disable Previous and Next buttons
+        document.getElementById("prev").disabled = page === 1;
+        document.getElementById("next").disabled = page === totalPages;
+
+        // Generate page numbers
+        generatePaginationControls(totalPages, page);
+    }
+
+    function generatePaginationControls(totalPages, activePage) {
+        const paginationControls = document.getElementById("pagination-controls");
+
+        // Clear previous page numbers
+        const pageNumbers = paginationControls.querySelectorAll("span");
+        pageNumbers.forEach(span => span.remove());
+
+        // Determine the range of page numbers to display
+        const maxPageNumbers = 10; // Maximum number of page numbers to display
+        let startPage, endPage;
+
+        if (totalPages <= maxPageNumbers) {
+            // If total pages are less than or equal to max, show all
+            startPage = 1;
+            endPage = totalPages;
+        } else {
+            // Calculate start and end page numbers to show
+            startPage = Math.max(1, activePage - Math.floor(maxPageNumbers / 2));
+            endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
+
+            // Adjust startPage if endPage exceeds totalPages
+            if (endPage === totalPages) {
+                startPage = Math.max(1, totalPages - maxPageNumbers + 1);
+            }
+        }
+
+        // Generate page numbers
+        for (let i = startPage; i <= endPage; i++) {
+            const span = document.createElement("span");
+            span.textContent = i;
+            span.className = (i === activePage) ? 'active' : '';
+            span.onclick = () => displayTable(i);
+            paginationControls.insertBefore(span, document.getElementById("next"));
+        }
+    }
+
+    function changePage(direction) {
+        const totalRows = document.querySelectorAll("#myTable tbody tr").length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+        currentPage += direction;
+
+        // Ensure currentPage stays within bounds
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages) currentPage = totalPages;
+
+        displayTable(currentPage);
+    }
+
+    // Initial display
+    displayTable(currentPage);
+  myForm1.style.display = 'none';
+  toggleButton1.addEventListener('click', () => {
+        if (myForm1.style.display === 'none' || myForm1.style.display === '') {
+            myForm1.style.display = 'block'; // Show the form
+            toggleButton1.textContent = 'Hide Filter'; // Change button text
+        } else {
+            myForm1.style.display = 'none'; // Hide the form
+            toggleButton1.textContent = 'Fillter Date'; // Change button text
+        }
+       
+    });
+function sumpayment(){
+  
+    let tgt = 0;
+    let gtg = 0;
+    let gta = 0;
+
+                // Iterate over each <td> in the Score column (third column)
+                $('#myTable tbody tr:visible').each(function() {
+                    // Get the value from the third <td> (index 2)
+                    let score = parseInt($(this).find('td:nth-child(4)').text());
+                    let cr = $(this).find('td:nth-child(3)').text().trim();
+                      
+                    // Add the score to the total
+                    
+                    tgt += score;
+                        if (cr==="USD") {
+                          gtg += score
+                        } 
+                        if(cr==='AFN') {
+                          gta += score
+                        }
+                        
+                        
+                    
+                });
+
+                // Display the total in the footer
+                $('#tgt').text(tgt);
+                $('#gtg').text('USD  '+gtg);
+                $('#gta').text('AFN  '+gta);
+           
+} 
+$(document).ready(function(){
+  sumpayment();
+});
+
+    
+  
+</script>
+
+
+<%-include('footer')%>

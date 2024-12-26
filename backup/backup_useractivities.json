@@ -1,0 +1,266 @@
+[
+  {
+    "_id": "67629fa3f425fac380003133",
+    "username": "omid@g.com",
+    "type": "Delete Customer",
+    "description": "Check the Date",
+    "createdAt": "2024-12-18T10:10:43.876Z",
+    "__v": 0
+  },
+  {
+    "_id": "67629fa8f425fac380003137",
+    "username": "omid@g.com",
+    "type": "Delete Customer",
+    "description": "Check the Date",
+    "createdAt": "2024-12-18T10:10:48.232Z",
+    "__v": 0
+  },
+  {
+    "_id": "67629fb9f425fac38000313b",
+    "username": "omid@g.com",
+    "type": "Add New Customer",
+    "description": "Farokh",
+    "createdAt": "2024-12-18T10:11:05.046Z",
+    "__v": 0
+  },
+  {
+    "_id": "67629fdbf425fac380003141",
+    "username": "omid@g.com",
+    "type": "Drawings",
+    "description": "Cash Out 6000",
+    "createdAt": "2024-12-18T10:11:39.372Z",
+    "__v": 0
+  },
+  {
+    "_id": "6762cf71a8924da02ddf7022",
+    "username": "omid@g.com",
+    "type": "New User",
+    "description": "zuhoor@g.com User",
+    "createdAt": "2024-12-18T13:34:41.543Z",
+    "__v": 0
+  },
+  {
+    "_id": "6762d020a8924da02ddf702f",
+    "username": "zuhoor@g.com",
+    "type": "Delete Customer",
+    "description": "Check the Date",
+    "createdAt": "2024-12-18T13:37:36.469Z",
+    "__v": 0
+  },
+  {
+    "_id": "6762d996a4993d3c9ebae5a4",
+    "username": "zuhoor@g.com",
+    "type": "Update Stock",
+    "description": "Transformer J 20 Pcs",
+    "createdAt": "2024-12-18T14:17:58.396Z",
+    "__v": 0
+  },
+  {
+    "_id": "6762da8aa4993d3c9ebae5b5",
+    "username": "zuhoor@g.com",
+    "type": "Update Stock",
+    "description": "Transformer W 18 Package",
+    "createdAt": "2024-12-18T14:22:02.837Z",
+    "__v": 0
+  },
+  {
+    "_id": "6762dae7a4993d3c9ebae5c2",
+    "username": "zuhoor@g.com",
+    "type": "Update Stock",
+    "description": "Transformer W 16 Package",
+    "createdAt": "2024-12-18T14:23:35.491Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763b10ffe3dcd7d8b92e995",
+    "username": "omid@g.com",
+    "type": "Update Payment",
+    "description": "QKTBN 003 - 50000",
+    "createdAt": "2024-12-19T05:37:19.118Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763caed820ed8c4df547eb6",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 004",
+    "createdAt": "2024-12-19T07:27:41.582Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763cb04820ed8c4df547ece",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 005",
+    "createdAt": "2024-12-19T07:28:04.498Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763cc6e820ed8c4df547f06",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 006",
+    "createdAt": "2024-12-19T07:34:06.710Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763d4b0e37d0796a3a029e5",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 007",
+    "createdAt": "2024-12-19T08:09:20.801Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ed66ed6f5664c689d0da",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 008",
+    "createdAt": "2024-12-19T09:54:46.290Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ed95ed6f5664c689d0f0",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 009",
+    "createdAt": "2024-12-19T09:55:33.494Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ed95ed6f5664c689d0f4",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 009",
+    "createdAt": "2024-12-19T09:55:33.494Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ed95ed6f5664c689d0f7",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 009",
+    "createdAt": "2024-12-19T09:55:33.495Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ee71183aa86ce86f8b27",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0010",
+    "createdAt": "2024-12-19T09:59:13.179Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ee71183aa86ce86f8b2b",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0010",
+    "createdAt": "2024-12-19T09:59:13.180Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763ee71183aa86ce86f8b2e",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0010",
+    "createdAt": "2024-12-19T09:59:13.182Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763efe47c3eaa64c61079fd",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0011",
+    "createdAt": "2024-12-19T10:05:24.255Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763efe47c3eaa64c6107a01",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0011",
+    "createdAt": "2024-12-19T10:05:24.256Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763efe47c3eaa64c6107a04",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0011",
+    "createdAt": "2024-12-19T10:05:24.257Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f0ae82828cef0324833b",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0012",
+    "createdAt": "2024-12-19T10:08:46.248Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f0ae82828cef03248337",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0012",
+    "createdAt": "2024-12-19T10:08:46.247Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f0ae82828cef0324833e",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0012",
+    "createdAt": "2024-12-19T10:08:46.249Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f1b486ef7d71a53f6620",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0013",
+    "createdAt": "2024-12-19T10:13:08.132Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f1b486ef7d71a53f661c",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0013",
+    "createdAt": "2024-12-19T10:13:08.131Z",
+    "__v": 0
+  },
+  {
+    "_id": "6763f1b486ef7d71a53f6623",
+    "username": "omid@g.com",
+    "type": "Sale Products",
+    "description": "QKTBN 0013",
+    "createdAt": "2024-12-19T10:13:08.133Z",
+    "__v": 0
+  },
+  {
+    "_id": "67665e690e324d1054a8e588",
+    "username": "omid@g.com",
+    "type": "Expense",
+    "description": "Food - AFN - 200",
+    "createdAt": "2024-12-21T06:21:29.288Z",
+    "__v": 0
+  },
+  {
+    "_id": "676c16e2eb67673887f2f070",
+    "username": "omid@g.com",
+    "type": "Update Payment",
+    "description": "QKTBN 006 - 8.64",
+    "createdAt": "2024-12-25T14:29:54.445Z",
+    "__v": 0
+  },
+  {
+    "_id": "676c16f8eb67673887f2f075",
+    "username": "omid@g.com",
+    "type": "Update Stock",
+    "description": "Transformer W500 - Pcs - 20",
+    "createdAt": "2024-12-25T14:30:16.253Z",
+    "__v": 0
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "67593255fe66c424a2b35671",
+    "name": "Javed Khawar",
+    "address": "kabul",
+    "phone": "078525262",
+    "createdAt": "2024-12-11T06:33:57.590Z",
+    "__v": 0
+  },
+  {
+    "_id": "67593270fe66c424a2b35675",
+    "name": "Omid Kahn",
+    "address": "jalal",
+    "phone": "07856252",
+    "createdAt": "2024-12-11T06:34:24.972Z",
+    "__v": 0
+  }
+]

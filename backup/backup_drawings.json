@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "67614c776c645664abe3395c",
+    "name": "Zuhoor qaderi",
+    "type": "Cash Out",
+    "currency": "AFN",
+    "amount": 10000,
+    "createdAt": "2024-12-17T10:03:35.969Z",
+    "__v": 0
+  },
+  {
+    "_id": "67629fdbf425fac380003140",
+    "name": "Javed Khawar",
+    "type": "Cash Out",
+    "currency": "AFN",
+    "amount": 6000,
+    "createdAt": "2024-12-18T10:11:39.372Z",
+    "__v": 0
+  }
+]

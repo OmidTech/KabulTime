@@ -1,0 +1,23 @@
+<%-include('header')%>
+
+  <style>
+    .flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;border: 0;
+            height: 100vh; /* Full viewport height */
+        }
+        .flex-container img {
+            max-width: 100%; /* Responsive */
+            max-height: 100%; /* Responsive */
+            object-fit: contain; /* Maintain aspect ratio */
+            border: 0;
+        }
+</style>
+<div class="container-fluid">
+  <div class="flex-container">
+    <img src="images/qaderikt.jpg"  alt="Qaderi Kabul Time" />
+</div>
+</div>
+  <%-include('footer')%>
