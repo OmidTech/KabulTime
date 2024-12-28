@@ -155,10 +155,24 @@
   
   
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-  
+  $(document).ready(function() {
+    const toggleButton = $('#toggleButton');
+    const myForm = $('#myForm');
+
+    toggleButton.on('click', function() {
+        if (myForm.css('display') === 'none' || myForm.css('display') === '') {
+            myForm.css('display', 'block'); // Show the form
+            toggleButton.text('Hide Filter'); // Change button text
+        } else {
+            myForm.css('display', 'none'); // Hide the form
+            toggleButton.text('Filter Date'); // Change button text
+        }
+    });
+
   const modalForm = document.getElementById('modalForm');
         const openFormButton = document.getElementById('openFormButton');
         const rem = document.getElementById('ur');
@@ -193,18 +207,7 @@
         document.getElementById('closeButton').addEventListener('click', () => {
             modalForm.style.display = 'none'; // Hide the modal
         });
-        const toggleButton = document.getElementById('toggleButton');
-        const myForm = document.getElementById('myForm');
-        toggleButton.addEventListener('click', () => {
-        if (myForm.style.display === 'none' || myForm.style.display === '') {
-            myForm.style.display = 'block'; // Show the form
-            toggleButton.textContent = 'Hide Filter'; // Change button text
-        } else {
-            myForm.style.display = 'none'; // Hide the form
-            toggleButton.textContent = 'Fillter Date'; // Change button text
-        }
-       
-    });
+      
         function debtorchk(){
         $('.filter').on('change', function() {
         const showGreaterThanZero = $(this).is(':checked');
@@ -338,5 +341,6 @@ const rowsPerPage = 30; // Number of rows per page
 
     // Initial display
     displayTable(currentPage);
+  });
 </script>
 <%-include('footer')%>
