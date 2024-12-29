@@ -162,187 +162,141 @@
   
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
-  
-  const modalForm = document.getElementById('modalForm');
-        const openFormButton = document.getElementById('openFormButton');
-        const rem = document.getElementById('ur');
-        const pd = document.getElementById('pd');
-        function openModal(rem,bill,pad) {
-            ur.value = rem; // Populate name input
-            bil.value = bill;
-            pd.value = pad;
-            modalForm.style.display = 'flex'; // Show modal
-        }
-        document.querySelectorAll('.del').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const row = event.target.closest('tr'); // Get the closest row
-                const rem = row.cells[7].innerText; // Get name from first cell
-                const bill = row.cells[1].innerText;
-                const pd = row.cells[6].innerText;
-                openModal(rem,bill,pd); // Open modal with data
+  $(document).ready(function() {
+    const modalForm = $('#modalForm');
+    const openFormButton = $('#openFormButton');
+    const remInput = $('#ur');
+    const billInput = $('#bil');
+    const pdInput = $('#pd');
+    
+    function openModal(rem, bill, pad) {
+        remInput.val(rem); // Populate name input
+        billInput.val(bill);
+        pdInput.val(pad);
+        modalForm.css('display', 'flex'); // Show modal
+    }
+
+    $('.del').on('click', function(event) {
+        const row = $(event.target).closest('tr'); // Get the closest row
+        const rem = row.find('td:nth-child(8)').text(); // Get name from the 8th cell
+        const bill = row.find('td:nth-child(2)').text(); // Get bill from the 2nd cell
+        const pd = row.find('td:nth-child(7)').text(); // Get pd from the 7th cell
+        openModal(rem, bill, pd); // Open modal with data
+    });
+
+    openFormButton.on('click', function() {
+        modalForm.css('display', 'flex'); // Show the modal
+    });
+
+    $('#submitButton').on('click', function() {
+        alert('Form submitted!');
+        modalForm.css('display', 'none'); // Hide the modal after submission
+    });
+
+    $('#closeButton').on('click', function() {
+        modalForm.css('display', 'none'); // Hide the modal
+    });
+
+    const toggleButton = $('#toggleButton');
+    const myForm = $('#myForm');
+    
+    toggleButton.on('click', function() {
+        myForm.toggle(); // Toggle visibility of the form
+        const isVisible = myForm.is(':visible');
+        toggleButton.text(isVisible ? 'Hide Filter' : 'Filter Date'); // Change button text
+    });
+
+    function debtorchk() {
+        $('.filter').on('change', function() {
+            const showGreaterThanZero = $(this).is(':checked');
+            $('#myTable tbody tr').each(function() {
+                const price = parseFloat($(this).find('td:nth-child(8)').text());
+                $(this).toggle(showGreaterThanZero ? price > 0 : true);
+                sumpayment();
             });
         });
-        openFormButton.addEventListener('click', () => {
-            modalForm.style.display = 'flex'; // Show the modal
+    }
+
+    function sumpayment() {
+        let tgt = 0, tpd = 0, trm = 0, tdis = 0;
+
+        $('#myTable tbody tr:visible').each(function() {
+            const score = parseFloat($(this).find('td:nth-child(5)').text());
+            const score1 = parseFloat($(this).find('td:nth-child(6)').text());
+            const score2 = parseFloat($(this).find('td:nth-child(7)').text());
+            const score3 = parseFloat($(this).find('td:nth-child(8)').text());
+
+            if (!isNaN(score)) tgt += score;
+            if (!isNaN(score1)) tdis += score1;
+            if (!isNaN(score2)) tpd += score2;
+            if (!isNaN(score3)) trm += score3;
         });
 
-        // Handle form submission
-        document.getElementById('submitButton').addEventListener('click', () => {
-            // You can handle form data here
-            alert('Form submitted!');
-            modalForm.style.display = 'none'; // Hide the modal after submission
-        });
+        $('#tgt').text(tgt);
+        $('#tdis').text(tdis);
+        $('#tpd').text(tpd);
+        $('#trm').text(trm);
+    }
 
-        // Handle close button
-        document.getElementById('closeButton').addEventListener('click', () => {
-            modalForm.style.display = 'none'; // Hide the modal
-        });
-        const toggleButton = document.getElementById('toggleButton');
-        const myForm = document.getElementById('myForm');
-        toggleButton.addEventListener('click', () => {
-        if (myForm.style.display === 'none' || myForm.style.display === '') {
-            myForm.style.display = 'block'; // Show the form
-            toggleButton.textContent = 'Hide Filter'; // Change button text
-        } else {
-            myForm.style.display = 'none'; // Hide the form
-            toggleButton.textContent = 'Fillter Date'; // Change button text
-        }
-       
-    });
-        function debtorchk(){
-        $('.filter').on('change', function() {
-        const showGreaterThanZero = $(this).is(':checked');
-
-                $('#myTable tbody tr').each(function() {
-                    // Get the price from the third <td> (which is the Price column)
-                    const price = parseFloat($(this).find('td:nth-child(8)').text());
-
-                    // Show or hide the row based on the checkbox state and price
-                    if (showGreaterThanZero) {
-                        $(this).toggle(price > 0);
-                        sumpayment()
-                    } else {
-                        $(this).show(); // Show all if checkbox is unchecked
-
-                        sumpayment()
-                    }
-                });
-        });
-        
-}
-function sumpayment(){
-  
-    let tgt = 0;
-    let tpd = 0;
-    let trm = 0;
-    let tdis = 0;
-
-                // Iterate over each <td> in the Score column (third column)
-                $('#myTable tbody tr:visible').each(function() {
-                    // Get the value from the third <td> (index 2)
-                    let score = parseFloat($(this).find('td:nth-child(5)').text());
-                    let score1 = parseFloat($(this).find('td:nth-child(6)').text());
-                    let score2 = parseFloat($(this).find('td:nth-child(7)').text());
-                    let score3 = parseFloat($(this).find('td:nth-child(8)').text());
-
-                    // Add the score to the total
-                    if (!isNaN(score)) {
-                        tgt += score;
-                    }
-                    if (!isNaN(score1)) {
-                        tdis += score1;
-                    }if (!isNaN(score2)) {
-                        tpd += score2;
-                    }if (!isNaN(score3)) {
-                        trm += score3;
-                    }
-                });
-
-                // Display the total in the footer
-                $('#tgt').text(tgt);
-                $('#tdis').text(tdis);
-                $('#tpd').text(tpd);
-                $('#trm').text(trm);
-           
-}
-const rowsPerPage = 30; // Number of rows per page
+    const rowsPerPage = 30; // Number of rows per page
     let currentPage = 1;
 
     function displayTable(page) {
-        const rows = document.querySelectorAll("#myTable tbody tr");
+        const rows = $("#myTable tbody tr");
         const totalRows = rows.length;
         const totalPages = Math.ceil(totalRows / rowsPerPage);
-        
-        // Calculate start and end indices for current page
+
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
 
-        // Hide all rows and only show the selected page's rows
-        rows.forEach((row, index) => {
-            row.style.display = (index >= start && index < end) ? '' : 'none';
-        });
+        rows.hide().slice(start, end).show(); // Hide all and show only the selected page's rows
 
-        // Update row count
+        $("#prev").prop('disabled', page === 1);
+        $("#next").prop('disabled', page === totalPages);
 
-        // Enable/disable Previous and Next buttons
-        document.getElementById("prev").disabled = page === 1;
-        document.getElementById("next").disabled = page === totalPages;
-
-        // Generate page numbers
         generatePaginationControls(totalPages, page);
     }
 
     function generatePaginationControls(totalPages, activePage) {
-        const paginationControls = document.getElementById("pagination-controls");
+        const paginationControls = $("#pagination-controls");
+        paginationControls.empty(); // Clear previous page numbers
 
-        // Clear previous page numbers
-        const pageNumbers = paginationControls.querySelectorAll("span");
-        pageNumbers.forEach(span => span.remove());
-
-        // Determine the range of page numbers to display
         const maxPageNumbers = 10; // Maximum number of page numbers to display
         let startPage, endPage;
 
         if (totalPages <= maxPageNumbers) {
-            // If total pages are less than or equal to max, show all
             startPage = 1;
             endPage = totalPages;
         } else {
-            // Calculate start and end page numbers to show
             startPage = Math.max(1, activePage - Math.floor(maxPageNumbers / 2));
             endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
 
-            // Adjust startPage if endPage exceeds totalPages
             if (endPage === totalPages) {
                 startPage = Math.max(1, totalPages - maxPageNumbers + 1);
             }
         }
 
-        // Generate page numbers
         for (let i = startPage; i <= endPage; i++) {
-            const span = document.createElement("span");
-            span.textContent = i;
-            span.className = (i === activePage) ? 'active' : '';
-            span.onclick = () => displayTable(i);
-            paginationControls.insertBefore(span, document.getElementById("next"));
+            const span = $('<span>').text(i).addClass(i === activePage ? 'active' : '').on('click', function() {
+                displayTable(i);
+            });
+            paginationControls.append(span);
         }
     }
 
     function changePage(direction) {
-        const totalRows = document.querySelectorAll("#myTable tbody tr").length;
+        const totalRows = $("#myTable tbody tr").length;
         const totalPages = Math.ceil(totalRows / rowsPerPage);
         currentPage += direction;
 
-        // Ensure currentPage stays within bounds
-        if (currentPage < 1) currentPage = 1;
-        if (currentPage > totalPages) currentPage = totalPages;
+        currentPage = Math.max(1, Math.min(currentPage, totalPages)); // Ensure currentPage stays within bounds
 
         displayTable(currentPage);
     }
 
     // Initial display
     displayTable(currentPage);
+});
 </script>
 <%-include('footer')%>

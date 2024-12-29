@@ -1,12 +1,12 @@
 <%-include('header')%>
 <div class="container-fluid">
+  <button id="toggleButton1">Filter Date</button>
 
   <div class="row">
-    <button id="toggleButton1">Filter Date</button>
-
+   
       <div class="col-lg-8 col-sm-12 d-flex align-items-stretch">
         <div class="card w-100">
-          <div id="myForm1" class="col-lg-8">
+          <div id="myForm" class="col-lg-8">
             <form action="/returnReport" method="post">
             <div class="row">
               <div class="col-auto">
@@ -224,6 +224,18 @@ const rowsPerPage = 30; // Number of rows per page
 
     // Initial display
     displayTable(currentPage);
+    myForm.style.display = 'none';
+  toggleButton1.addEventListener('click', () => {
+        if (myForm.style.display === 'none' || myForm.style.display === '') {
+          myForm.style.display = 'block'; // Show the form
+            toggleButton1.textContent = 'Hide Filter'; // Change button text
+        } else {
+          myForm.style.display = 'none'; // Hide the form
+            toggleButton1.textContent = 'Fillter Date'; // Change button text
+        }
+       
+    });
+    
 
     function sumpayment(){
   
@@ -245,5 +257,6 @@ const rowsPerPage = 30; // Number of rows per page
               
          
 }
+
   </script>
 <%-include('footer')%>
