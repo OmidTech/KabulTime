@@ -51,6 +51,7 @@
     <div class="col-lg-12 col-m-12 col-sm-12 d-flex align-items-stretch">
       <div class="card w-100">
         <div id="myForm1" class="col-lg-8">
+          <form action="/ExpReport" method="post">
           <div class="row">
             <div class="col-auto">
           <label for="startDate">Start Date:</label>
@@ -60,8 +61,10 @@
           <label for="endDate">End Date:</label>
           <input class="form-control" type="datetime-local" name="endDate" id="endDate" required></div>
           <div class="col-auto">
-          <button id="fillt" onclick="filterdatex();" class="btn fillt float-end mt-3 btn-dark">Filter</button></div>
+            <button type="submit" class="btn m-3 float-end btn-success">Print</button>
+          <a id="fillt" onclick="filterdatex();" class="btn fillt  mt-3 btn-dark">Filter</a></div>
         </div>
+      </form>
         </div>
         <div class="card-body p-4">
           <h5 class="card-title text-center fw-semibold mb-4">Recent Expenses</h5>

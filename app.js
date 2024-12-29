@@ -13,9 +13,7 @@ dotenv.config();
 
 const upload = multer({ dest: './Documents' });
 const uri = process.env.MONGO_URI;
-const dblink='mongodb+srv://KabulTime:KabulTime_12345@cluster0.yfxcz.mongodb.net/KabulTime?retryWrites=true&w=majority&appName=Cluster0'
-
-mongoose.connect(dblink);
+mongoose.connect("mongodb://localhost:27017/test");
 const app = express();
 exports.app = app;
 app.use(bodyparser.json())
@@ -79,7 +77,8 @@ app.get('/backupr', function (req, res) {
   }
 })
 app.post('/backup', async (req, res) => {
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  const urli="mongodb://localhost:27017/test"
+  const client = new MongoClient(urli, { useNewUrlParser: true, useUnifiedTopology: true });
 
   try {
     await client.connect();
@@ -90,7 +89,7 @@ app.post('/backup', async (req, res) => {
     for (const collection of collections) {
       const colName = collection.name;
       const data = await db.collection(colName).find({}).toArray();
-      const filePath = path.join(__dirname, 'Documents', `backup_${colName}.json`);
+      const filePath = path.join(__dirname, 'backup', `backup_${colName}.json`);
       fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
       console.log(`Backup created for collection: ${colName}`);
     }
@@ -106,9 +105,9 @@ app.post('/backup', async (req, res) => {
 
 // Restore route
 app.post('/restore', async (req, res) => {
-  
-  const client = new MongoClient(uri);
-  const uploadsDir = path.join(__dirname, 'Documents');
+  const urli="mongodb://localhost:27017/test"
+  const client = new MongoClient(urli);
+  const uploadsDir = path.join(__dirname, 'backup');
 
   try {
     await client.connect();
@@ -388,6 +387,90 @@ app.post('/invoiceb', function (req, res) {
 
       })
 
+    })
+  } else {
+    res.redirect('/login');
+  }
+});
+app.post('/PayReport', function (req, res) {
+  if (req.session.user) {
+    dt=req.body.startDate;
+    ed=req.body.endDate;
+    dd=Date();
+    const a="Payments Report"
+    Payment.find({createdAt: { $gte: dt, $lt: ed }}).sort({ _id: 1 }).then((all) => {
+          res.render('PayReport', { bb: all,dd:dd, p: a,st:dt,ed:ed,us:req.session.user })
+      
+    })
+  } else {
+    res.redirect('/login');
+  }
+});
+app.post('/ExpReport', function (req, res) {
+  if (req.session.user) {
+    dt=req.body.startDate;
+    ed=req.body.endDate;
+    dd=Date();
+    const a="Expense Report"
+    expense.find({createdAt: { $gte: dt, $lt: ed }}).sort({ _id: 1 }).then((all) => {
+          res.render('ExpReport', { bb: all,dd:dd, p: a,st:dt,ed:ed,us:req.session.user })
+      
+    })
+  } else {
+    res.redirect('/login');
+  }
+});
+app.post('/purchaseReport', function (req, res) {
+  if (req.session.user) {
+    dt=req.body.startDate;
+    ed=req.body.endDate;
+    dd=Date();
+    const a="Purchase Report"
+    purchase.find({createdAt: { $gte: dt, $lt: ed }}).sort({ _id: 1 }).then((all) => {
+          res.render('purchaseReport', { bb: all,dd:dd, p: a,st:dt,ed:ed,us:req.session.user })
+      
+    })
+  } else {
+    res.redirect('/login');
+  }
+});
+app.get('/stockReport', function (req, res) {
+  if (req.session.user) {
+    
+    dd=Date();
+    const a="Stock Report"
+    stock.find().sort({ quantity: -1 }).then((all) => {
+          res.render('stockReport', { bb: all,dd:dd, p: a,us:req.session.user })
+      
+    })
+  } else {
+    res.redirect('/login');
+  }
+});
+
+app.post('/saleReportfilter', function (req, res) {
+  if (req.session.user) {
+    dt=req.body.startDate;
+    ed=req.body.endDate;
+    dd=Date();
+    const a="Sale Report"
+    order.find({createdAt: { $gte: dt, $lt: ed }}).sort({ _id: 1 }).then((all) => {
+          res.render('saleReportfilter', { bb: all,dd:dd, p: a,st:dt,ed:ed,us:req.session.user })
+      
+    })
+  } else {
+    res.redirect('/login');
+  }
+});
+app.post('/returnReport', function (req, res) {
+  if (req.session.user) {
+    dt=req.body.startDate;
+    ed=req.body.endDate;
+    dd=Date();
+    const a="Sale Report"
+    orderReturn.find({createdAt: { $gte: dt, $lt: ed }}).sort({ _id: 1 }).then((all) => {
+          res.render('returnReport', { bb: all,dd:dd, p: a,st:dt,ed:ed,us:req.session.user })
+      
     })
   } else {
     res.redirect('/login');

@@ -84,6 +84,7 @@
           <div class="table-responsive">
             <button id="toggleButton1">Filter Date</button>
             <div id="myForm1" class="col-lg-8">
+              <form action="/purchaseReport" method="post">
               <div class="row">
                 <div class="col-auto">
               <label for="startDate">Start Date:</label>
@@ -93,7 +94,10 @@
               <label for="endDate">End Date:</label>
               <input class="form-control" type="datetime-local" name="endDate" id="endDate" required></div>
               <div class="col-auto">
-              <button id="fillt" onclick="filterdatex();" class="btn fillt float-end mt-3 btn-dark">Filter</button></div>
+                <button type="submit" class="btn m-3 float-end btn-success">Print</button>
+              <a id="fillt" onclick="filterdatex();" class="btn fillt  mt-3 btn-dark">Filter</a>
+            </div>
+            </form>
             </div>
             </div>
             <table class="table text-nowrap mb-0 col-sm-12 align-middle" id="expense-table">

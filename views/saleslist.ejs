@@ -34,6 +34,7 @@
       <div class="col-lg-12 col-sm-12 col-sm-12 d-flex align-items-stretch">
         <div class="card w-100">
           <div id="myForm" class="col-lg-8">
+            <form action="/PayReport" method="post">
             <div class="row">
               <div class="col-auto">
             <label for="startDate">Start Date:</label>
@@ -43,7 +44,12 @@
             <label for="endDate">End Date:</label>
             <input class="form-control" type="datetime-local" name="endDate" id="endDate" required></div>
             <div class="col-auto">
-            <button id="fil" onclick="filterdate();" class="btn fil float-end mt-3 btn-dark">Filter</button></div>
+              <button type="submit" class="btn m-3 float-end btn-success">Print</button>
+            <a  id="fil" onclick="filterdate();" class="btn fil  mt-3 btn-dark">Filter</a>
+            
+          
+          </div>
+        </form>
           </div>
           </div>
           <div class="card-body p-4">
@@ -155,24 +161,10 @@
   
   
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-  $(document).ready(function() {
-    const toggleButton = $('#toggleButton');
-    const myForm = $('#myForm');
-
-    toggleButton.on('click', function() {
-        if (myForm.css('display') === 'none' || myForm.css('display') === '') {
-            myForm.css('display', 'block'); // Show the form
-            toggleButton.text('Hide Filter'); // Change button text
-        } else {
-            myForm.css('display', 'none'); // Hide the form
-            toggleButton.text('Filter Date'); // Change button text
-        }
-    });
-
+  
   const modalForm = document.getElementById('modalForm');
         const openFormButton = document.getElementById('openFormButton');
         const rem = document.getElementById('ur');
@@ -207,7 +199,18 @@
         document.getElementById('closeButton').addEventListener('click', () => {
             modalForm.style.display = 'none'; // Hide the modal
         });
-      
+        const toggleButton = document.getElementById('toggleButton');
+        const myForm = document.getElementById('myForm');
+        toggleButton.addEventListener('click', () => {
+        if (myForm.style.display === 'none' || myForm.style.display === '') {
+            myForm.style.display = 'block'; // Show the form
+            toggleButton.textContent = 'Hide Filter'; // Change button text
+        } else {
+            myForm.style.display = 'none'; // Hide the form
+            toggleButton.textContent = 'Fillter Date'; // Change button text
+        }
+       
+    });
         function debtorchk(){
         $('.filter').on('change', function() {
         const showGreaterThanZero = $(this).is(':checked');
@@ -341,6 +344,5 @@ const rowsPerPage = 30; // Number of rows per page
 
     // Initial display
     displayTable(currentPage);
-  });
 </script>
 <%-include('footer')%>

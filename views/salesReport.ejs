@@ -19,17 +19,23 @@
       <div class="col-lg-12 col-sm-12 col-sm-12 d-flex align-items-stretch">
         <div class="card w-100">
           <div id="myForm1" class="col-lg-8">
+            <form action="/returnReport" method="post">
             <div class="row">
               <div class="col-auto">
-            <label for="startDate">Start Date:</label>
-            <input class="form-control " type="datetime-local" name="startDate" id="startDate" required>
-          </div>
-          <div class="col-auto">
-            <label for="endDate">End Date:</label>
-            <input class="form-control" type="datetime-local" name="endDate" id="endDate" required></div>
-            <div class="col-auto">
-            <button id="fil" onclick="filterdate();" class="btn fil float-end mt-3 btn-dark">Filter</button></div>
-          </div>
+                <label for="startDate">Start Date:</label>
+                <input class="form-control " type="datetime-local" name="startDate" id="startDate" required>
+              </div>
+              <div class="col-auto">
+                <label for="endDate">End Date:</label>
+                <input class="form-control" type="datetime-local" name="endDate" id="endDate" required>
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn m-3 float-end btn-success">Print</button>
+                <a id="fil" onclick="filterdate()" class="btn fil float-end mt-3 btn-dark">Filter</a>
+              </div>
+          
+            </div>
+            </form>
           </div>
           <div class="card-body p-4">
             

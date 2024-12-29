@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Invoice</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</head>
+<style>
+  /* Style for the watermark */
+  .watermark {
+    position: fixed; /* Fixed position so it stays in the same place */
+    top: 45%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position to center */
+    opacity: 0.06; /* Makes the watermark faint */
+    z-index: -1; /* Places it behind other content */
+  }
+  /* Ensure the watermark doesn't exceed the size of the container */
+  .watermark img {
+    max-width: 100%; /* Responsive */
+    max-height: 100%; /* Responsive */
+  }
+</style>
+<body>
+  <div class="watermark">
+    <img src="/images/qaderikt.jpg" alt="Watermark" />
+  </div>
+  <div>
+    <div class="py-4">
+      <div class="px-14 py-6">
+        <table class="w-full border-collapse border-spacing-0">
+          <tbody>
+            <tr>
+              <td class="w-full align-top">
+                <div>
+                  <img src="images/qaderikt.jpg" class="h-12" />
+                </div>
+              </td>
+
+              <td class="align-top">
+                <div class="text-sm">
+                  <table class="border-collapse border-spacing-0">
+                    <tbody>
+                      
+                      <tr>
+                        <td class="border-r pr-4">
+                          <div>
+                            <p class="whitespace-nowrap text-slate-400 text-right">Date</p>
+                            <p class="whitespace-nowrap font-bold text-main text-right"><%= dd.toString().slice(0, 15) %></p>
+                          </div>
+                        </td>
+                        <td class="pl-4">
+                          <div>
+                            <p class="whitespace-nowrap text-slate-400 text-right">Report</p>
+                            <p class="whitespace-nowrap font-bold text-main text-right"><%= p %></p>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-slate-100 px-14 py-6 text-sm">
+        <table class="w-full border-collapse border-spacing-0">
+          <tbody>
+            <tr>
+              <td class="w-1/2 align-top">
+                <div class="text-sm text-neutral-600">
+                  <p class="font-bold">ْQaderi Kabul Time</p>
+                  <p>Phone #: (+93) 777 600 700</p>
+                  <p>Address: Karte 4, Front of Ghazi high school, Kabul</p>
+                </div>
+              </td>
+              
+              <td class="w-1/2 align-top text-right">
+                <div class="text-sm text-neutral-600">
+                  
+                    
+                  <p class="font-bold"><%= p %></p>
+                  <p>From : <%= st.toString().slice(0, 10) %></p>
+                  <p>To: <%= ed.toString().slice(0, 10) %></p>
+                      
+              </td>
+            </tr> 
+           
+          </tbody>
+        </table>
+      </div>
+
+      <div class="px-14 py-10 text-sm text-neutral-700">
+        <table id="myTable" class="w-full border-collapse border-spacing-0">
+          <thead>
+            <tr>
+              <td class="border-b-2 border-main pb-3 pl-3 font-bold text-main">#</td>
+              <td class="border-b-2 border-main pb-3 pl-2 font-bold text-main">Customer</td>
+              <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold text-main">Biil #</td>
+              <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold text-main">Currency</td>
+              <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold text-main">Paid</td>
+              <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold text-main">Total</td>
+              
+              <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold text-main">Remain</td>
+              <td class="border-b-2 border-main pb-3 pl-2 text-right font-bold text-main">Discount</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% var b=0 %>
+                      <% bb.forEach(function(f){%>
+            <tr>
+              <td class="border-b py-3 pl-3"><%= b+=1 %>.</td>
+              <td class="border-b py-3 pl-2"><%=f.customern %></td>
+              <td class="border-b py-3 pl-2 text-right"><%=f.billno %></td>
+              <td class="border-b py-3 pl-2 text-center"><%=f.currency %></td>
+              <td class="border-b py-3 pl-2 text-right"><%=f.Paid %></td>
+              <td class="border-b py-3 pl-2 pr-3 text-right"><%=f.Total %></td>
+              <td class="border-b py-3 pl-2 pr-3 text-right"><%=f.remain %></td>
+              <td class="border-b py-3 pl-2 pr-3 text-right"><%=f.discount %></td>
+            </tr>
+            <%})%>
+            
+          </tbody>
+          
+        </table>
+      </div>
+      
+      <div class="px-14 py-10 text-sm text-neutral-700">
+        <p class="text-main font-bold">Notes</p>
+        <p class="italic">All the above data are taken from database</p>
+        </dvi>
+
+        <footer class="fixed bottom-0 left-0 bg-slate-100 w-full text-neutral-600 text-center text-xs py-3">
+          Qaderi Kabul Time
+          <span class="text-slate-300 px-2">|</span>
+          Qaderikabultime@gmail.com
+          <span class="text-slate-300 px-2">|</span>
+          +93-700-494-917
+        </footer>
+      </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+  sumpayment();
+});
+  function sumpayment(){
+  
+  let tgt = 0;
+  let tpd = 0;
+  let tdis = 0;
+  let rem = 0;
+
+              // Iterate over each <td> in the Score column (third column)
+              $('#myTable tbody tr:visible').each(function() {
+                  // Get the value from the third <td> (index 2)
+                  let score = parseFloat($(this).find('td:nth-child(5)').text());
+                  let score1 = parseFloat($(this).find('td:nth-child(6)').text());
+                  let score2 = parseFloat($(this).find('td:nth-child(7)').text());
+                  let score3 = parseFloat($(this).find('td:nth-child(4)').text());
+                  
+
+                  // Add the score to the total
+                  if (!isNaN(score3)) {
+                      tgt += score3;
+                  }
+                  if (!isNaN(score3)) {
+                      tdis += score3;
+                  }if (!isNaN(score1)) {
+                      tpd += score1;
+                  }if (!isNaN(score2)) {
+                      rem += score2;
+                  }
+              });
+
+              // Display the total in the footer
+              $('#tt').text(tgt);
+              $('#dis').text(tdis);
+              $('#pd').text(tpd);
+              $('#rm').text(rem);
+         
+} 
+</script>
+</html>
