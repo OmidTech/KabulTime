@@ -13,7 +13,8 @@ dotenv.config();
 
 const upload = multer({ dest: './Documents' });
 const uri = process.env.MONGO_URI;
-mongoose.connect("mongodb://localhost:27017/test");
+mongoose.connect('mongodb+srv://KabulTime:KabulTime_12345@cluster0.yfxcz.mongodb.net/KabulTime?retryWrites=true&w=majority&appName=Cluster0');
+
 const app = express();
 exports.app = app;
 app.use(bodyparser.json())
